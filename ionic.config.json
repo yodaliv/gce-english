@@ -1,0 +1,9 @@
+{
+  "name": "gce-english",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "df07f837"
+}

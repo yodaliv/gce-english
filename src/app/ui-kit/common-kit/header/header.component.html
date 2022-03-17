@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar class="px-10">
+    <ion-buttons slot="start">
+      <ion-back-button
+      icon="arrow-back-outline"
+      [defaultHref]="backUrl"
+      text=""
+      class="font-15"
+      ></ion-back-button>
+      <ion-menu-button *ngIf="!hideSidebar" ion-menu-toggle></ion-menu-button>
+    </ion-buttons>
+    <ion-title *ngIf="!noTitle">
+      <div class="font-13 color-cloud-burst text-center text-uppercase">{{ title }}</div>
+      <div class="font-10 text-primary text-center text-uppercase font-weight-bold">{{ userRole }}</div>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="profileClick($event)">
+        <app-avatar size="34" *ngIf="!hideProfile"></app-avatar>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

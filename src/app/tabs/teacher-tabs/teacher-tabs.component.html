@@ -1,0 +1,19 @@
+<ion-tabs class="bottom-tab">
+  <ion-tab-bar slot="bottom" [hidden]="!showTabs">
+    <ion-tab-button routerLink="/exams" routerLinkActive="active" routerDirection="root">
+      <ion-icon name="library-outline"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button routerLink="/students" routerLinkActive="active" routerDirection="root">
+      <ion-icon name="school-outline"></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<ion-fab class="bottom-add-fab" vertical="bottom" horizontal="center" slot="fixed" [hidden]="!showTabs">
+  <ion-fab-button *ngIf="isExamScreen" routerLink="/exam-form/create">
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-button *ngIf="!isExamScreen" (click)="openInviteModal()">
+    <ion-icon name="person-add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

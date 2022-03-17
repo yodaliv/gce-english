@@ -1,0 +1,26 @@
+.btn {
+  border-radius: 25px;
+  &.btn-primary {
+    color: white;
+  }
+  &.btn-outline-primary {
+    background-color: white;
+    color: $emerald !important;
+    &:active {
+      color: white !important;
+    }
+    &:hover {
+      color: #52BE80;
+    }
+  }
+}
+
+.btn-primary {
+  background: linear-gradient(147.39deg, #52BE80 10.46%, #0EC55C 89.82%);
+  &:active, 
+  &:hover,
+  &:focus {
+    border-color: transparent;
+    box-shadow: none;
+  }
+}

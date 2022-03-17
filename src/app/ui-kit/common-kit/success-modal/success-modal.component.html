@@ -1,0 +1,8 @@
+<ion-content fullscreen scroll-y="false">
+  <div class="container d-flex flex-column justify-content-center text-center h-100">
+    <ion-img class="mb-25 mt-0" src="assets/images/success-badge.svg" alt="Success"></ion-img>
+    <h1 class="color-cloud-burst font-25 font-weight-bold mb-25">{{ title }}</h1>
+    <p class="color-cloud-burst font-18 mb-40 w-75 mx-auto">{{ description }}</p>
+    <button class="btn btn-primary w-50 mx-auto" (click)="close()">{{ btnTitle || 'Home' }}</button>
+  </div>
+</ion-content>

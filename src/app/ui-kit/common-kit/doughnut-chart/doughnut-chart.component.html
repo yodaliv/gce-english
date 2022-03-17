@@ -1,0 +1,7 @@
+<div class="chart mt-5">
+  <canvas id="doughnutCanvas" #doughnutCanvas></canvas>
+  <div class="score-value" [style.fontSize]="fontSize">
+    <span class="value">{{ score | number:'.0-0' }}</span>
+    <span class="symbol">%</span>
+  </div>
+</div>

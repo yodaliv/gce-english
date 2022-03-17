@@ -1,0 +1,20 @@
+<ion-content>
+  <div class="container h-100 d-flex flex-column justify-content-center">
+    <h2 class="color-cloud-burst text-center mb-30">Register your account</h2>
+    <form [formGroup]="form" (ngSubmit)="register()">
+      <app-text-input type="email" label="Email" placeholder="example@email.com" formControlName="email"></app-text-input>
+      <app-text-input label="Enter Your Name" placeholder="Enter your name" formControlName="name"></app-text-input>
+      <app-text-input label="Nickname" placeholder="Enter your nickname" formControlName="nickname"></app-text-input>
+      <div class="row mb-20">
+        <div class="col">
+          <app-text-input type="password" label="Password" placeholder="Enter your password" formControlName="password1"></app-text-input>
+        </div>
+        <div class="col">
+          <app-text-input type="password" label="Confirm Password" placeholder="Enter confirm password" formControlName="password2"></app-text-input>
+        </div>
+      </div>
+      <button class="btn btn-primary w-100 mb-10">Register</button>
+      <button type="button" class="btn btn-outline-primary w-100" routerLink="/login">Back to Login</button>
+    </form>
+  </div>
+</ion-content>

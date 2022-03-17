@@ -1,0 +1,11 @@
+<form [formGroup]="form">
+  <div class="form-group" formArrayName="options" *ngFor="let option of options.controls; let i = index">
+    <label class="w-100" [formGroupName]="i">
+      <span class="letter font-30 font-weight-medium color-cloud-burst">{{ letters[i] }}</span>
+      <input class="form-control" formControlName="option" placeholder="Enter an option">
+      <span class="checkbox" (click)="selectCorrectAnswer($event, option.get('option').value)">
+        <ion-checkbox [checked]="correct_answer !== '' && correct_answer === option.get('option').value"></ion-checkbox>
+      </span>
+    </label>
+  </div>
+</form>

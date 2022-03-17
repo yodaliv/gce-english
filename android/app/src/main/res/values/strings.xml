@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ace-it</string>
+    <string name="title_activity_main">ace-it</string>
+    <string name="package_name">com.linalgo.aceit</string>
+    <string name="custom_url_scheme">com.linalgo.aceit</string>
+</resources>

@@ -1,0 +1,7 @@
+<div class="form-group">
+  <label class="w-100">
+    <span class="mb-15 d-block font-15 color-cinder">{{ label }}</span>
+    <textarea *ngIf="!readonly" class="form-control" [placeholder]="placeholder" [(ngModel)]="value" (ngModelChange)="change($event)" [rows]="rows" [readonly]="readonly"></textarea>
+    <div *ngIf="readonly" name="value" class="form-control h-auto" [(ngModel)]="value">{{ value }}</div>
+  </label>
+</div>

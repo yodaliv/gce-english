@@ -1,0 +1,13 @@
+<ion-content>
+  <div class="container px-0 d-flex flex-column justify-content-between pb-100 pt-30">
+    <label class="font-20 color-cloud-burst mb-10 ml-15">Questions</label>
+    <app-empty-description text="No questions to display..." *ngIf="!questions?.length && !isLoading"></app-empty-description>
+    <app-question-preview *ngFor="let question of questions; let i = index" [index]="i" [question]="question"></app-question-preview>
+    <div class="fixed-bottom bottom-btn-wrapper d-flex align-items-center px-20">
+      <button class="btn btn-primary w-100" (click)="openManageModal()">MANAGE QUIZ</button>
+    </div>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)" *ngIf="total > questions?.length">
+      <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more questions..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+</ion-content>

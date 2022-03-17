@@ -1,0 +1,129 @@
+.profile-header {
+    box-shadow: 0 6px 15px rgba(190, 189, 189, 0.1);
+    border-radius: 20px;
+    z-index: 11;
+    max-height: 275px;
+    position: fixed;
+    background: var(--ion-color-primary-contrast);
+
+    &__name {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+        color: var(--ion-font-color-dark);
+    }
+
+    &__info {
+        ion-col {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+
+            .value{
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 19px;
+                margin-bottom: 9px;
+                color: var(--ion-font-color-dark);
+            }
+            .label{
+                font-size: 11px;
+                line-height: 13px;
+                text-align: center;
+                color: var(--ion-color-medium-shade);
+            }
+        }
+    }
+}
+
+.profile-stats {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    margin-top: 260px;
+
+    h1 {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 24px;
+        color: var(--ion-font-color-dark);
+    }
+
+    &__level {
+        border-bottom: 1px solid #F8F8F8;
+        padding: 5px;
+    }
+
+    &__label{
+        width: 44px;
+        height: 45px;
+        background: #3C8AFF;
+        border-radius: 4px;
+        color: var(--ion-color-medium-contrast);
+
+        .value {
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            font-weight: 500;
+            font-size: 27px;
+            line-height: 32px;
+            color: #F0F0F0;
+        }
+        .label {
+            position: absolute;
+            font-size: 9px;
+            line-height: 11px;
+            left: 8px;
+            top: 7px;
+        }
+    }
+    &__header {
+        font-size: 14px;
+        line-height: 17px;
+        color: var(--ion-font-color-dark);
+        font-weight: 600;
+    }
+    &__counts {
+        font-size: 12px;
+        line-height: 14px;
+        text-align: right;
+        color: var(--ion-font-color-dark);
+
+        &-total {
+            color: var(--ion-color-medium);
+        }
+    }
+    &__progress {
+        height: 10px;
+        border-radius: 20px;
+        --buffer-background: #F0F0F0;
+        --progress-background: #0EC55C;
+    }
+    &__progress-percentage {
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 13px;
+        color: var(--ion-font-color-dark);
+        text-align: right;
+    }
+
+    ion-progress-bar {
+        :ng-deep {
+            .progress {
+                border-radius: 10px;
+            }
+        }
+        :host {
+            .progress {
+                border-radius: 10px;
+            }
+        }
+        :host(.progress) { 
+            border-radius: 10px;            
+        }
+    }
+}

@@ -1,0 +1,30 @@
+<div class="p-25" [class.bg-color-selago]="!(index % 2)">
+  <ion-icon name="close-outline" class="font-30 close color-cinder" (click)="delete.emit()" *ngIf="removable"></ion-icon>
+  <p class="font-16 font-weight-medium color-gray-chateau">Question #{{ index + 1 }}</p>
+  <ng-container *ngIf="question.sub_questions.length === 1">
+    <ng-container *ngIf="question.sub_questions[0] as subQuestion">
+      <ng-container [ngTemplateOutlet]="questionTemplate" [ngTemplateOutletContext]="{subQuestion: subQuestion, question: question}"></ng-container>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="question.sub_questions.length > 1">
+    <div class="px-10" *ngFor="let subQuestion of question.sub_questions; let subIndex = index">
+      <p class="font-13 color-gray-chateau mt-10">Sub Question #{{ subIndex + 1 }}</p>
+      <ng-container [ngTemplateOutlet]="questionTemplate" [ngTemplateOutletContext]="{subQuestion: subQuestion, question: question}"></ng-container>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #questionTemplate let-subQuestion="subQuestion" let-question="question">
+  <p class="font-16 color-cloud-burst mb-10">{{ subQuestion.question_text }}</p>
+  <div class="font-16 font-italic color-cloud-burst d-flex flex-wrap justify-content-between mb-15">
+    <span *ngFor="let option of subQuestion.options; let i = index"
+          [class.font-weight-bold]="subQuestion.correct_answer === option">{{ labels[i] }}. {{ option }}</span>
+  </div>
+  <div class="d-flex flex-wrap">
+    <div class="category-tag bg-white d-flex align-items-center justify-content-center px-10 font-12 color-emerald mr-5 mb-10" *ngIf="question.level_score !== null">Level {{ question.level_score }}</div>
+    <div class="category-tag bg-white d-flex align-items-center justify-content-center px-10 font-12 color-emerald mr-5 mb-10"
+         *ngFor="let category of question.categories">
+      <span class="ellipses">{{ category }}</span></div>
+  </div>
+</ng-template>

@@ -1,0 +1,22 @@
+@import "../../../theme";
+
+ion-content {
+  height: calc(100vh - 200px);
+}
+
+.level {
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: $mantis;
+  background-color: rgba(82, 190, 128, 0.1);
+  margin-right: 5px;
+}
+
+.tag {
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #FF4141;
+  background: rgba(254, 29, 29, 0.11);
+}

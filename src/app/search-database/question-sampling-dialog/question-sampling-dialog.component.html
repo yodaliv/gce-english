@@ -1,0 +1,7 @@
+<div class="option-wrapper bg-white w-100 pt-30 pb-30" @slideUp>
+  <h2 class="font-20 color-cloud-burst px-15">Resample questions</h2>
+  <form class="px-15" [formGroup]="form" (ngSubmit)="selectLimit()">
+    <app-text-input type="number" placeholder="number of questions" formControlName="limit"></app-text-input>
+    <button class="btn btn-primary w-100 mt-30" [disabled]="form.invalid">RESAMPLE</button>
+  </form>
+</div>

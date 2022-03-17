@@ -1,0 +1,4 @@
+<app-header title="Assign Students" backUrl="/exam-form/{{examId}}"></app-header>
+<ion-content>
+ <app-exam-students-list [examId]="examId" (buttonClicked)="finishHandler()"></app-exam-students-list>
+</ion-content>

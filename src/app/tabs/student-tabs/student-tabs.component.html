@@ -1,0 +1,18 @@
+<ion-tabs class="bottom-tab">
+    <ion-tab-bar slot="bottom" [hidden]="!showTabs">
+        <ion-tab-button routerLink="/assignments" routerLinkActive="active" routerDirection="root">
+            <ion-icon name="library-outline"></ion-icon>
+        </ion-tab-button>
+        
+        <ion-tab-button routerLink="/profile" routerLinkActive="active" routerDirection="root">
+            <ion-icon name="stats-chart"></ion-icon>
+        </ion-tab-button>
+    </ion-tab-bar>
+</ion-tabs>
+
+<ion-fab class="bottom-add-fab" vertical="bottom" horizontal="center" slot="fixed" [hidden]="!showTabs">
+    <ion-fab-button routerLink="/exam-infiniquiz" routerLinkActive="active">
+        <ion-icon name="flash"></ion-icon>
+    </ion-fab-button>
+</ion-fab>
+  

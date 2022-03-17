@@ -1,0 +1,15 @@
+<form [formGroup]="form" (ngSubmit)="saveQuestion()">
+  <app-textarea label="Main Content" placeholder="Enter main content" formControlName="passage"></app-textarea>
+  <div class="d-flex flex-column mb-30 align-items-start">
+    <label class="mb-10"><span class="font-15 color-cinder">Add an image (optional)</span></label>
+    <ion-badge>Choose</ion-badge>
+  </div>
+  <ng-container formArrayName="sub_questions" *ngFor="let sub of sub_questions.controls; let i = index">
+    <ng-container [formGroupName]="i">
+      <app-textarea label="Sub-question" placeholder="Enter question content" formControlName="question_text"></app-textarea>
+      <app-answer-input formControlName="data"></app-answer-input>
+    </ng-container>
+  </ng-container>
+  <button type="button" class="btn btn-outline-primary w-100 mb-15" (click)="addSubQuestion()">ADD SUB-QUESTION</button>
+  <button class="btn btn-primary w-100" *ngIf="isUpdated">SAVE QUESTION</button>
+</form>

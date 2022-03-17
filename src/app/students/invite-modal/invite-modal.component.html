@@ -1,0 +1,6 @@
+<div class="option-wrapper bg-white w-100 pt-30 pb-30" @slideUp>
+  <form [formGroup]="form" class="px-20" (ngSubmit)="invite()">
+    <app-text-input type="email" placeholder="Enter the student email" label="Email" formControlName="email"></app-text-input>
+    <button class="btn btn-primary w-100 mt-10" [disabled]="form.invalid">INVITE</button>
+  </form>
+</div>

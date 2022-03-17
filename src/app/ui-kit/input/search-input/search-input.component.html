@@ -1,0 +1,8 @@
+<form [formGroup]="form" (ngSubmit)="search.emit(form.value.search)">
+  <div class="form-group position-relative">
+    <label class="w-100">
+      <input class="form-control" [placeholder]="placeholder" formControlName="search">
+      <button class="btn btn-primary btn-search"><ion-icon name="search-outline"></ion-icon></button>
+    </label>
+  </div>
+</form>

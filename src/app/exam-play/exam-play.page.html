@@ -1,0 +1,42 @@
+<app-header backUrl="/assignments" title="Quiz"></app-header>
+<ion-content>
+  <div class="container h-100 d-flex flex-column ion-justify-content-between">
+    <div class="pt-40">
+      <ion-progress-bar [value]="(current + 1) / questionAssignments.length"></ion-progress-bar>
+      <app-empty-description text="No available questions here..." *ngIf="!questionAssignments.length">
+      </app-empty-description>
+      <ion-slides (ionSlideDidChange)="slided($event)" [options]="slideOpts" *ngIf="didInit">
+        <ion-slide class="swiper-no-swiping" *ngFor="let assignment of questionsForms.controls; let i = index;">
+          <div class="pt-20 w-100 px-10">
+            <app-question-detail
+              [formControl]="assignment"
+              [index]="i"
+              [allowSkip]="!exam.is_practice"
+              [allowChange]="!exam.is_practice"
+              [readOnly]="reviewMode"
+              [hideNext]="showFinish()"
+              (next)="next()"
+              (nextSubQuestionLoaded)="nextSubQuestionLoaded($event)"
+              (nextSubQuestion)="nextSubQuestion($event, questionAssignments[i].id)"
+              (answerSelected)="answerSelected($event, questionAssignments[i].id)"
+              (subQuestionsLoaded)="subQuestionsLoaded($event, i)"
+            ></app-question-detail>
+          </div>
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <div class="px-50 mb-30 mt-20">
+      <button class="btn btn-primary w-100" *ngIf="!questionsForms.controls.length" routerLink="/assignments">Back</button>
+    </div>
+  </div>
+</ion-content>
+
+<div 
+  class="footer-buttons"
+  *ngIf="showFinish()">
+  <button 
+      class="btn btn-primary w-100 ion-text-uppercase" 
+      (click)="nextQuestion()">
+      {{ showFinishLabel() }}
+    </button>
+</div>

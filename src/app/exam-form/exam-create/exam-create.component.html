@@ -1,0 +1,35 @@
+<app-header backUrl="/exams" title="Create Quiz"></app-header>
+<ion-content>
+  <div class="container h-100 d-flex flex-column justify-content-between pb-30 px-15">
+    <mat-horizontal-stepper #stepper linear>
+      <mat-step [completed]="enableStepper">  
+        <label class="font-20 d-block color-cloud-burst mb-10">Quiz main details</label>
+        <app-exam-info-form (finish)="formUpdated()"></app-exam-info-form>
+      </mat-step>
+      <mat-step>
+        <label class="font-20 d-block color-cloud-burst mb-10 ">Add questions</label>
+        <label class="question-count font-16 d-block">You added <b>{{ state.queriedQuestions.length + state.createdQuestions.length }}</b> questions.</label>
+        <ion-grid class="mt-70">
+          <ion-row>
+            <ion-col>
+              <button class="btn btn-outline-primary w-100" (click)="createQuestion()">CREATE NEW QUESTIONS</button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <button class="btn btn-outline-primary w-100" (click)="browseDatabase()">BROWSE QUESTION DATABASE</button>
+            </ion-col>
+          </ion-row>    
+        </ion-grid>
+      </mat-step>
+      <mat-step >
+        <label class="font-20 color-cloud-burst mb-10 ">Assign students</label>
+        <app-exam-students-list *ngIf="stepper.selectedIndex === 2" [examId]="exam?.id" (buttonClicked)="finishHandler()" buttonLabel="FINISH"></app-exam-students-list>
+      </mat-step>
+    </mat-horizontal-stepper>
+    <div class="fixed-bottom px-60">
+      <button *ngIf="this.stepper.selectedIndex === 1" class="btn btn-outline-primary w-100 mt-10" (click)="preview()">PREVIEW QUESTIONS</button>
+      <button *ngIf="this.stepper.selectedIndex <= 1" class="btn btn-primary w-100 mt-10 mb-10" (click)="next()">NEXT</button>
+    </div>
+  </div>
+</ion-content>

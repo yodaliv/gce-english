@@ -1,0 +1,18 @@
+<div class="question-box">
+  <ion-icon name="close-outline" class="font-30 close color-cinder" (click)="askDelete()"></ion-icon>
+  <label class="mb-20"><span class="font-15 color-cinder">Question Type</span></label>
+  <mat-radio-group aria-label="Select an option" class="row mb-20" [(ngModel)]="type">
+    <div class="col" *ngFor="let option of options">
+      <mat-radio-button [value]="option.value">
+        <ion-icon [name]="option.icon" [class.text-primary]="type === option.value"></ion-icon>
+        <span class="font-15 ml-5" [class.text-primary]="type === option.value">{{ option.label }}</span>
+      </mat-radio-button>
+    </div>
+  </mat-radio-group>
+  <ng-container *ngIf="type === QuestionType.MCQ">
+    <app-simple-question-form [question]="question.question_details" [examId]="examId" (created)="onSave($event)"></app-simple-question-form>
+  </ng-container>
+  <ng-container *ngIf="type === QuestionType.Cloze">
+    <app-nested-question-form [question]="question.question_details" [examId]="examId" (created)="onSave($event)"></app-nested-question-form>
+  </ng-container>
+</div>

@@ -1,0 +1,7 @@
+@import "../../../theme";
+
+ion-label, ion-select {
+  // important for overriding ionic component styles
+  font-size: 16px !important;
+  color: $cloud-burst !important;
+}

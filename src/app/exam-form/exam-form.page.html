@@ -1,0 +1,25 @@
+<app-header backUrl="/exams" title="View Quiz"></app-header>
+<ion-content>
+  <div class="mt-30 px-10 mb-10 tab-wrapper">
+    <div class="title-wrapper px-30 d-flex align-items-center">
+      <ion-col size="11">
+        <h2 class="font-22 color-cloud-burst">{{ exam.exam_title }}</h2>
+      </ion-col>
+      <ion-col>
+        <ion-icon class="font-22" name="create-outline" routerLink="/exam-form/{{ exam.id }}/edit" routerDirection="forward"></ion-icon>
+      </ion-col>
+    </div>
+    <div class="row font-13 font-weight-medium">
+      <div class="col d-flex justify-content-center py-15">
+        <a routerLink="/exam-form/{{ exam.id }}/tab-questions" routerLinkActive="active">QUIZ</a>
+      </div>
+      <div class="col d-flex justify-content-center py-15">
+        <a routerLink="/exam-form/{{ exam.id }}/tab-students" routerLinkActive="active">STUDENTS</a>
+      </div>
+      <div class="col d-flex justify-content-center py-15">
+        <a routerLink="/exam-form/{{ exam.id }}/tab-stats" routerLinkActive="active">STATS</a>
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</ion-content>

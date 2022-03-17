@@ -1,0 +1,33 @@
+<ion-grid class="student-stat">
+  <ion-row>
+    <ion-col class="ion-align-self-center">
+      <ion-label class="label">Correct</ion-label>
+    </ion-col>
+    <ion-col class="ion-text-right">
+      <ion-label class="value ion-text-right">{{ stats.correct }}</ion-label>
+    </ion-col>
+    <ion-col class="ion-text-right" size="2">
+      <img class="stats-icon" src="assets/icons/check-bold.svg" />
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="ion-align-self-center">
+      <ion-label class="label">Wrong</ion-label>
+    </ion-col>
+    <ion-col class="ion-text-right">
+      <ion-label class="value ion-text-right">{{ stats.wrong }}</ion-label>
+    </ion-col>
+    <ion-col class="ion-text-right" size="2">
+      <img class="stats-icon" src="assets/icons/cross.svg" />
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="ion-align-self-center">
+      <ion-label class="label">Total</ion-label>
+    </ion-col>
+    <ion-col class="ion-text-right">
+      <ion-label class="value ion-text-right">{{ stats.total }}</ion-label>
+    </ion-col>
+    <ion-col class="ion-text-right" size="2"></ion-col>
+  </ion-row>
+</ion-grid>

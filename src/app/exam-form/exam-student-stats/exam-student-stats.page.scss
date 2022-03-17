@@ -1,0 +1,30 @@
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-evenly;
+  box-shadow: 0 6px 15px rgba(190, 189, 189, 0.1);
+  border-radius: 20px;
+  z-index: 2;
+  max-height: 275px;
+
+  ion-avatar {
+      height: 105px;
+      width: 105px;
+      margin: 0 auto;
+      img {
+          border: 7px solid var(--ion-color-light-shade);
+      }
+  }
+
+  &__name {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 24px;
+      text-align: center;
+      color: var(--ion-font-color-dark);
+  }
+}  
+.bottom{
+    background-color: white;
+}

@@ -1,0 +1,17 @@
+<div class="d-flex justify-content-between align-items-center p-15 mb-5" [class.bg-color-selago]="index % 2" (click)="toggleCheck()">
+  <div class="d-flex align-items-center">
+    <app-avatar stroke="2" [email]="email" size="44"></app-avatar>
+    <div class="d-flex flex-column ml-25">
+      <span class="font-14 color-mine-shaft mb-5">
+        <ng-content select="[title]"></ng-content>
+      </span>
+      <span class="font-13 color-gray-chateau subtitle">
+        <ng-content select="[subtitle]"></ng-content>
+      </span>
+    </div>
+  </div>
+  <div class="check-image-wrapper">
+    <img class="check-icon" src="assets/icons/check.svg" alt="Check" *ngIf="isChecked" alt="Check"/>
+    <ion-icon *ngIf="allowDeassign" name="close-circle-outline" color="danger" (click)="deassign()"></ion-icon>
+  </div>
+</div>

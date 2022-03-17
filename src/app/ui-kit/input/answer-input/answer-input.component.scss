@@ -1,0 +1,27 @@
+@import "../../../../theme";
+
+label {
+  position: relative;
+}
+.letter {
+  position: absolute;
+  top: 4px;
+  left: 18px;
+}
+
+input.form-control {
+  padding: 0 55px;
+}
+
+.checkbox {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  z-index: 1;
+  ion-checkbox {
+    z-index: -1;
+    --background: transparent;
+    --checkmark-width: 2px;
+    --border-width: 2px;
+  }
+}

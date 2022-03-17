@@ -1,0 +1,6 @@
+<div class="option-wrapper bg-white w-100 pt-20 pb-10 px-20" @slideUp>
+  <a class="d-flex align-items-center mb-20" (click)="navigateToPage(menu.path)" *ngFor="let menu of menus">
+    <ion-icon [name]="menu.icon" class="font-30 color-cloud-burst"></ion-icon>
+    <span class="ml-15 font-16 color-cloud-burst">{{ menu.label }}</span>
+  </a>
+</div>

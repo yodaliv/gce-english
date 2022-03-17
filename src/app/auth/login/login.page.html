@@ -1,0 +1,17 @@
+<ion-content>
+  <div class="container d-flex flex-column justify-content-center">
+    <h2 class="color-cloud-burst text-center mb-20">Welcome, to <b>Ace it!</b></h2>
+    <p class="font-14 color-cloud-burst text-center mb-30">Login to start training on targeted quizzes and improve your vocabulary.</p>
+    <form [formGroup]="form" (ngSubmit)="login()">
+      <app-text-input type="email" label="Email" placeholder="example@email.com" formControlName="email"></app-text-input>
+      <app-text-input type="password" label="Password" placeholder="Enter your password" formControlName="password"></app-text-input>
+
+      <div class="d-flex justify-content-between mt-35 mb-30">
+        <app-checkbox></app-checkbox>
+        <a class="text-primary">Forgot password</a>
+      </div>
+      <button class="btn btn-primary w-100 mb-10">Login</button>
+      <button type="button" class="btn btn-outline-primary w-100" (click)="register()">Sign up</button>
+    </form>
+  </div>
+</ion-content>

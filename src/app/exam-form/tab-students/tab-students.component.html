@@ -1,0 +1,22 @@
+<ion-content>
+  <div class="container px-0 d-flex flex-column justify-content-between pb-100 pt-30">
+    <label class="font-20 color-cloud-burst mb-10 ml-15">Students</label>
+    <app-empty-description text="No students to display..." *ngIf="!students?.length && !isLoading"></app-empty-description>
+    <div *ngFor="let student of students; let i = index" class="d-flex align-items-center" [class.bg-color-selago]="i % 2" (click)="openScore(student)">
+      <app-student-assigner [email]="student.student_details.email" [index]="i" [readonly]="true">
+        <span title>{{ student.student_details.name }}</span>
+        <span *ngIf="student.completed_date !== null" subtitle>Completed <span class="color-cloud-burst">{{ student.completed_date | date:'yyyy/MM/dd' }}</span></span>
+        <span *ngIf="student.completed_date === null" subtitle class="font-13 color-gray-chateau subtitle">Pending completion...</span>
+      </app-student-assigner>
+      <div class="chart-wrapper" *ngIf="student.stats?.score">
+        <app-doughnut-chart [score]="student.stats?.score" fontSize="10px"></app-doughnut-chart>
+      </div>
+    </div>
+    <div class="fixed-bottom bottom-btn-wrapper d-flex align-items-center px-60 py-10">
+      <button class="btn btn-primary w-100 m-0" routerLink="/exam-form/{{examId}}/students">ASSIGN TO STUDENT</button>
+    </div>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)" *ngIf="total > students?.length">
+      <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more students..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+</ion-content>

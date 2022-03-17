@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar class="px-15">
+    <ion-buttons slot="start">
+      <ion-icon 
+        icon="arrow-back-outline"
+        class="font-28"
+        (click)="onBack()"
+      ></ion-icon>
+    </ion-buttons>
+    <ion-title class="font-18 color-cloud-burst text-center">Score</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="success-modal">
+  <ion-grid class="profile-header">
+    <ion-row class="ion-margin-top">
+      <ion-col>
+        <ion-avatar>
+          <app-avatar [email]="studentDetails.email" size="105" stroke="7"></app-avatar>
+        </ion-avatar>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-margin-bottom">
+      <ion-col class="profile-header__name ion-text-center">
+        <ion-label>{{ studentDetails?.name }}</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="container pt-30 w-100 pb-150 pl-30 pr-30">
+    <section class="top">
+      <div class="score-content">
+        <div class="chart-wrapper">
+          <app-doughnut-chart [score]="studentStats.score" fontSize="32px"></app-doughnut-chart>
+        </div>
+        <app-exam-stats [stats]="studentStats"></app-exam-stats>       
+      </div>
+    </section>   
+  </div>
+  <section class="bottom fixed-bottom px-20 mb-20 pt-10">
+    <div class="options">
+      <button class="btn btn-outline-primary w-100 mb-15" (click)="reassign()">REASSIGN</button>
+      <button class="btn btn-primary w-100" (click)="review()">REVIEW ANSWERS</button>
+    </div>
+  </section>
+</ion-content>

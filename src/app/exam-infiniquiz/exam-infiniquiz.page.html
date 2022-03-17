@@ -1,0 +1,32 @@
+<app-header backUrl="/assignments" title="Quiz"></app-header>
+
+<ion-content>
+  <div class="container h-100 d-flex flex-column ion-justify-content-between">
+    <div class="pt-20">
+      <ion-slides (ionSlideDidChange)="slided($event)" *ngIf="didInit">
+        <ion-slide class="swiper-no-swiping" *ngFor="let assignment of questionsForms.controls; let i = index;">
+          <div class="pt-20 w-100 px-10">
+            <app-question-detail
+              [formControl]="assignment"
+              [index]="i"
+              [allowSkip]="false"
+              [allowChange]="false" 
+              [hideNext]="showFinish()"         
+              [showQuestionNumber]="false"
+              (next)="next()"
+              (nextSubQuestionLoaded)="nextSubQuestionLoaded($event)"
+              (answerSelected)="answerSelected()"
+            ></app-question-detail>
+          </div>
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <div class="px-50 mb-30 mt-20">
+      <button class="btn btn-primary w-100" *ngIf="!questionsForms.controls.length" routerLink="/assignments">Back</button>
+    </div>
+  </div>
+</ion-content>
+
+<div class="footer-buttons" *ngIf="showFinish()">
+  <button class="btn btn-primary w-100 ion-text-uppercase" (click)="next()">Next</button>
+</div>

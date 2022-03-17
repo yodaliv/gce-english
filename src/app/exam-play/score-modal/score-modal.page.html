@@ -1,0 +1,21 @@
+<ion-content class="success-modal">
+  <div class="container pt-20 w-100 pb-20 pl-30 pr-30">
+    <section class="top">
+      <div class="heading-text">
+        <p [innerHTML]="studentStats.score | scoreLabel"></p>
+      </div>
+      <div class="score-content">
+        <div class="chart-wrapper">
+          <app-doughnut-chart [score]="studentStats.score" fontSize="32px"></app-doughnut-chart>
+        </div>
+        <app-exam-stats [stats]="studentStats"></app-exam-stats>       
+      </div>
+    </section>
+    <section class="bottom">
+      <div class="options">
+        <button class="btn btn-outline-primary w-100 mb-15" (click)="primaryClicked()">{{ primaryBtnText }}</button>
+        <button class="btn btn-primary w-100" (click)="goToHome()">HOME</button>
+      </div>
+    </section>
+  </div>
+</ion-content>

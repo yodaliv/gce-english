@@ -1,0 +1,30 @@
+<app-header title="Quizzes"></app-header>
+<ion-content>
+  <ng-container *ngIf="isLoading || total !== 0; then showData; else noData"></ng-container>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+</ion-content>
+
+<ng-template #showData>
+  <div class="container pb-30">
+    <ion-grid *ngIf="exams">
+      <ion-row>
+        <ion-col size="6" sizeSm="4" sizeMd="3" *ngFor="let exam of exams; let i = index">
+          <app-exam-card [exam]="exam" [index]="i" (edit)="editExam($event)" [questionCount]=questionCount(exam)></app-exam-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <app-empty-description text="No quizzes to display..." *ngIf="!exams?.length && !isLoading"></app-empty-description>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)" *ngIf="total > exams?.length">
+      <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more quizzes..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+</ng-template>
+  
+<ng-template #noData>
+  <app-empty-screen>
+    <img emptyImage class="empty-screen-image" src="assets/images/no-data.svg" alt="No Data"/>
+    <app-empty-description emptyDescription text="Create a new quiz by clicking on +"></app-empty-description>  
+  </app-empty-screen>
+</ng-template>

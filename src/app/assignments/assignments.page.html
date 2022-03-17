@@ -1,0 +1,64 @@
+<app-header title="Quizzes" [hideSidebar]="false"></app-header>
+<ion-content>
+  <ng-container *ngIf="isLoading || testTotal !== 0 || practiceTotal !== 0; then showData; else noData"></ng-container>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+</ion-content>
+
+<ng-template #showData>
+  <div class="container pb-30">
+    <ion-grid>
+      <ion-row class="section-header ion-margin-bottom">
+        <ion-col size="8">
+          <ion-label>Test Quizzes</ion-label>
+        </ion-col>
+        <ion-col size="4" class="text-right">
+          <ion-label class="quiz-count text-right">{{ testTotal }} {{ quizLabel(testAssignments.length) }}</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="testAssignments.length > 0">
+        <ion-slides pager="false" [options]="slideOptions" (ionSlideReachEnd)="loadMoreTest()">
+          <ion-slide *ngFor="let assignment of testAssignments; let i = index">
+            <app-exam-card [exam]="assignment.exam" [index]="i" (edit)="editExam($event, assignment.id)" [questionCount]="assignment.exam.questions_count"></app-exam-card>
+          </ion-slide>
+        </ion-slides>
+      </ion-row>
+      <app-empty-description text="No quizs to display..." *ngIf="!testAssignments?.length && !isLoading"></app-empty-description>
+    </ion-grid>
+    <ion-grid>
+      <ion-row class="section-header ion-margin-bottom">
+        <ion-col size="8">
+          <ion-label>Practice Quizzes</ion-label>
+        </ion-col>
+        <ion-col size="4" class="text-right">
+          <ion-label class="quiz-count text-right">{{ practiceTotal }} {{ quizLabel(practiceAssignments.length) }}</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="practiceAssignments.length > 0">
+        <ion-col size="6" sizeSm="4" sizeMd="3" *ngFor="let assignment of practiceAssignments; let i = index">
+          <app-exam-card [exam]="assignment.exam" [index]="i" (edit)="editExam($event, assignment.id)" [questionCount]="assignment.exam.questions_count"></app-exam-card>
+        </ion-col>
+      </ion-row>
+      <app-empty-description text="No quizzes to display..." *ngIf="!practiceAssignments?.length && !isLoading"></app-empty-description>
+    </ion-grid>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMorePractice($event)" *ngIf="practiceTotal > practiceAssignments?.length">
+      <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more quizzes..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+</ng-template>
+
+<ng-template #noData>
+  <app-empty-screen>
+    <img 
+      emptyImage 
+      class="empty-screen-image" 
+      src="assets/images/no-data.svg" 
+      alt="No Data"
+    />
+    <app-empty-description 
+      emptyDescription 
+      text="Congratulation you have finished all of today's quizzes! Use the flash icon button to train with the Infiniquiz.">
+    </app-empty-description>  
+  </app-empty-screen>
+</ng-template>

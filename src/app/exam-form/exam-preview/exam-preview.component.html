@@ -1,0 +1,10 @@
+<app-header title="Preview Questions" [hideProfile]="true"></app-header>
+<ion-content>
+  <div class="pt-40 mb-100">
+    <app-empty-description text="No questions to display" *ngIf="!questions.length"></app-empty-description>
+    <app-question-preview *ngFor="let question of questions; let i = index" (delete)="askDelete(question, i)" [examId]="examId" [question]="question.question_details" [index]="i" [removable]="true"></app-question-preview>
+  </div>
+  <div class="fixed-bottom bottom-btn-wrapper d-flex align-items-center px-20">
+    <button class="btn btn-primary w-100" (click)="close()">FINISH</button>
+  </div>
+</ion-content>

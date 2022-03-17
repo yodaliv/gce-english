@@ -1,0 +1,11 @@
+<app-textarea  readonly="true" [ngModel]="value.question_text" ></app-textarea>
+<div class="btn-option px-60 mb-10 d-flex align-items-center"
+  *ngFor="let option of value.options; let j = index"
+  [ngClass]="value.answer | answerOptionStats : value : option" 
+  (click)="selectAnswer(option)">
+  <span class="letter font-30">{{ ['A', 'B', 'C', 'D'][j] }}</span>
+  <span class="">{{ option }}</span>
+  <span class="checkbox" *ngIf="value.correct_answer">
+    <ion-icon [name]="(option === value.correct_answer) ? 'checkmark-circle-outline' : 'close-circle-outline'"></ion-icon>
+  </span>
+</div>

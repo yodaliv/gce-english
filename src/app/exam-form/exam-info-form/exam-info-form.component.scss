@@ -1,0 +1,26 @@
+ion-select {
+    background: #FFFFFF;
+    border: 1px solid rgba(228, 228, 228, 0.6);
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.cover_image {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    float: right;
+    height: 214px;
+    background-size: cover;
+    background-position: center;
+}
+
+.form-group {
+    border-bottom: 1px solid #efefef;
+    padding: 15px 10px;
+    margin-bottom: 0;
+    &:last-child {
+        border-bottom: 0;
+    }
+}

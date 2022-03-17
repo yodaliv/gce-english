@@ -1,0 +1,9 @@
+ion-content {
+  height: calc(100vh - 200px);
+}
+.chart-wrapper {
+  position: absolute;
+  height: 60px;
+  right: 0;
+  display: flex;
+}

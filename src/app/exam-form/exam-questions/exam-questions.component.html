@@ -1,0 +1,18 @@
+<app-header [backUrl]="backUrl" title="Questions"></app-header>
+<ion-content>
+  <div class="container h-100 d-flex flex-column justify-content-between">
+    <div class="pt-40">
+      <app-empty-description text="No questions to display..." *ngIf="!questions?.length && !isLoading"></app-empty-description>
+      <div *ngFor="let question of questions; let i = index" class="mb-20 mt-20">
+        <app-question-edit [question]="question" [examId]="exam.id" (save)="onSave($event, i)" (delete)="deleteQuestion(i)"></app-question-edit>
+      </div>
+    </div>
+    <div>
+      <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)" *ngIf="total > questions?.length">
+        <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more questions..."></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+      <button class="btn btn-outline-primary w-100 mb-15" *ngIf="total <= questions?.length && !isLoading" (click)="addQuestion()">Add QUESTIONS</button>
+      <button class="btn btn-primary w-100 mb-30" (click)="finish()">FINISH</button>
+    </div>
+  </div>
+</ion-content>

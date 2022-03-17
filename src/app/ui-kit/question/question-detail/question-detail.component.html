@@ -1,0 +1,31 @@
+<div class="question-card">
+  <label *ngIf="showQuestionNumber" class="color-cloud-burst font-weight-medium font-18">Question #{{index + 1}}</label>
+  <ng-container *ngIf="value.controls.length === 1">
+    <app-sub-question [formControl]="value.controls[0]" (optionSelected)="change($event)" [allowChange]="allowChange && !value.controls[0].value.correct_answer" [readOnly]="readOnly"></app-sub-question>
+    <button 
+      *ngIf="(allowSkip || value.controls[0].value.answer) && !hideNext"
+      [ngClass]="{'btn-outline-primary': !value.controls[0].value.answer, 'btn-primary': value.controls[0].value.answer}"
+      class="btn w-100 ion-text-uppercase" 
+      (click)="nestedSubQuestionAnswer(value.controls[0], 0)">
+      {{ value.controls[0].value.answer ? 'Next' : 'Skip' }}
+    </button>
+  </ng-container>
+  
+  <ng-container *ngIf="value.controls.length > 1">
+    <app-textarea *ngIf="question.passage" [ngModel]="question.passage" readonly="true"></app-textarea>
+    <mat-horizontal-stepper labelPosition="bottom" #stepper [linear]="true" *ngIf="value.controls && value.controls.length" (selectionChange)="onStepChange($event)">
+      <mat-step [completed]="currentStep >= i" *ngFor="let subQuestion of value.controls; let i = index;">
+        <app-sub-question [formControl]="subQuestion" (optionSelected)="change($event)" [allowChange]="allowChange && !subQuestion.value.correct_answer" [readOnly]="readOnly"></app-sub-question>
+        <div class="w-100 d-flex justify-content-center my-20">
+          <button 
+            *ngIf="(allowSkip || subQuestion.value.answer || readOnly ) && !hideNext"
+            [ngClass]="{'btn-outline-primary': !subQuestion.value.answer, 'btn-primary': subQuestion.value.answer !== undefined}"
+            class="btn w-100 ion-text-uppercase" 
+            (click)="nestedSubQuestionAnswer(subQuestion, i)">
+            {{ subQuestion.value.answer !== undefined ? 'Next' : 'Skip' }}
+          </button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </ng-container>
+</div>

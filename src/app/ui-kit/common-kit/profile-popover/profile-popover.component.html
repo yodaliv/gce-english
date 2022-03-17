@@ -1,0 +1,4 @@
+<ion-list lines="none">
+  <ion-item *ngIf="(user$ | async)?.account_type === Role.Student" (click)="gotoProfile()">Profile</ion-item>
+  <ion-item (click)="logout()">Logout</ion-item>
+</ion-list>

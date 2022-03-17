@@ -1,0 +1,20 @@
+ <div class="option-wrapper bg-white w-100 pt-30 pb-30" @slideUp>
+  <h2 class="font-20 color-cloud-burst px-15">Select a filter to be added</h2>
+  <form [formGroup]="form" (ngSubmit)="selectCategory()">
+    <ion-item lines="none">
+      <ion-label class="font-16 color-cloud-burst">Category</ion-label>
+      <ion-select formControlName="parent">
+        <ion-select-option *ngFor="let category of options" [value]="category">{{ category }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label class="font-16 color-cloud-burst">Sub-Category</ion-label>
+      <ion-select value="something" formControlName="sub">
+        <ion-select-option *ngFor="let sub of subCategories" [value]="sub.original_name">{{ sub.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div class="px-15">
+      <button class="btn btn-primary w-100 mt-20" [disabled]="form.invalid">SELECT CATEGORY</button>
+    </div>
+  </form>
+</div>

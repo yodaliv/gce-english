@@ -1,0 +1,174 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:12-browsers
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v2-dependencies-{{ checksum "package.json" }}
+          - v2-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v2-dependencies-{{ checksum "package.json" }}
+
+      - run: yarn lint
+
+  deploy-dev:
+    docker:
+      - image: circleci/node:12-browsers
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v2-dependencies-{{ checksum "package.json" }}
+            - v2-dependencies-
+
+      - run:
+          name: "Install ionic and cordova"
+          command: sudo npm install -g ionic
+
+      - run:
+          name: Install
+          command: npm install
+
+      - run:
+          name: Install AWS dependencies
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get -y -qq install python3-dev
+            curl -O https://bootstrap.pypa.io/get-pip.py
+            sudo python3 get-pip.py
+            sudo pip3 install awscli --upgrade
+
+      - run:
+          name: Build app
+          command: ionic build
+
+      - run:
+          name: Deploy linhub to S3
+          command: aws s3 sync www s3://com.linalgo.aceit.dev
+
+      - save_cache:
+          paths:
+            - ./venv
+          key: v
+
+  deploy-test:
+    docker:
+      - image: circleci/node:12-browsers
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v2-dependencies-{{ checksum "package.json" }}
+            - v2-dependencies-
+
+      - run:
+          name: "Install ionic and cordova"
+          command: sudo npm install -g ionic
+
+      - run:
+          name: Install
+          command: npm install
+
+      - run:
+          name: Install AWS dependencies
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get -y -qq install python3-dev
+            curl -O https://bootstrap.pypa.io/get-pip.py
+            sudo python3 get-pip.py
+            sudo pip3 install awscli --upgrade
+
+      - run:
+          name: Build app
+          command: ionic build
+
+      - run:
+          name: Deploy to S3
+          command: aws s3 sync www s3://com.linalgo.aceit.test
+
+      - save_cache:
+          paths:
+            - ./venv
+          key: v2-dependencies-{{ checksum "package.json" }}
+
+  deploy-prod:
+    docker:
+      - image: circleci/node:12-browsers
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-npm-deps-{{ checksum "package-lock.json" }}
+            - v1-npm-deps-
+      
+      - run:
+          name: "Install ionic and cordova"
+          command: sudo npm install -g ionic
+
+      - run: npm install
+
+      - save_cache:
+          key: v1-npm-deps-{{ checksum "package-lock.json" }}
+          paths:
+            - ./node_modules
+          
+      - run:
+          name: Build app
+          command: ionic build --prod
+            
+      - run:
+          name: Firebase Deploy
+          command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
+        
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy-dev:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+      - deploy-test:
+          requires:
+            - build
+          filters:
+            branches:
+              only: test
+      - deploy-prod:
+          requires:
+            - build
+          filters:
+            branches:
+              only: prod

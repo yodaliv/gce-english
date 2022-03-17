@@ -1,0 +1,14 @@
+<app-header backUrl="/exams" title="Search database"></app-header>
+<ion-content>
+  <app-category-filter class="d-block mb-50"
+                       [categories]="categories"
+                       [levels]="levels"
+                       (filterChanged)="filterChanged($event)"></app-category-filter>
+  <app-search-result class="d-block mb-100"
+                     [questions]="questions"
+                     [(limit)]="limit"
+                     (limitChange)="limitChanged()"></app-search-result>
+  <div class="fixed-bottom bottom-btn-wrapper d-flex align-items-center px-20">
+    <button class="btn btn-primary w-100" (click)="saveQuestionsToExam()">FINISH</button>
+  </div>
+</ion-content>

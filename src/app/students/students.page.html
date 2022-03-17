@@ -1,0 +1,23 @@
+<app-header title="Students"></app-header>
+<ion-content>
+  <div class="container px-0 d-flex flex-column justify-content-between pb-30 pt-30">
+    <div class="px-20">
+      <app-search-input (search)="doSearch($event)"></app-search-input>
+    </div>
+    <label class="font-20 font-weight-medium color-cloud-burst mb-10 px-20">Students</label>
+    <app-empty-description text="No students to display..." *ngIf="!students?.length && !isLoading"></app-empty-description>
+    <div *ngFor="let student of students; let i = index">
+      <app-student-assigner 
+        [email]="student.email"
+        [readonly]="true"
+        [allowDeassign]="true"
+        [index]="i">
+        <span title>{{ student.name }}</span>
+        <span *ngIf="student.last_seen !== null" subtitle>Last seen <span class="color-cloud-burst">{{ student.last_seen | timeAgo }}</span></span>
+      </app-student-assigner>
+    </div>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)" *ngIf="total > students?.length">
+      <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more students..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+</ion-content>

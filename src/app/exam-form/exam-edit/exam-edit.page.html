@@ -1,0 +1,10 @@
+<app-header backUrl="/exams" title="Edit Quiz"></app-header>
+<ion-content *ngIf="exam">
+  <div class="container h-100 d-flex flex-column pb-30 px-15 mt-30">
+    <label class="font-20 d-block color-cloud-burst mb-10">Edit quiz details</label>
+    <app-exam-info-form [exam]="exam" class="pb-120"></app-exam-info-form>
+    <div class="fixed-bottom px-60">
+      <button class="btn btn-primary w-100 my-10" (click)="save()">SAVE</button>
+    </div>
+  </div>
+</ion-content>

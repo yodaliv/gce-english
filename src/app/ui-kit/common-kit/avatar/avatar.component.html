@@ -1,0 +1,6 @@
+<ion-avatar [style.width.px]="size" [style.height.px]="size">
+  <!-- Render profile image from email -->
+  <img [style.border-width.px]="stroke" *ngIf="email" [src]="'https://gravatar.com/avatar/'+ (email | emailHash) +'?d=robohash&f=y'" alt="Profile">
+  <!-- Render current user's profile image  -->
+  <img [style.border-width.px]="stroke" *ngIf="!email" [src]="'https://gravatar.com/avatar/'+ ((user$ | async)?.email | emailHash) +'?d=robohash&f=y'" alt="Profile">
+</ion-avatar>

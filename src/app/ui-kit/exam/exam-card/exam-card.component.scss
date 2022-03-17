@@ -1,0 +1,25 @@
+.cover {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  height: 107px;
+  background-size: cover;
+  background-position: center;
+  height: 32.33vw;
+  @media (min-width: 576px) {
+    height: 160px;
+  }
+  @media (min-width: 767px) {
+    height: 200px;
+  }
+}
+
+.level {
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: rgba(82, 190, 128, 0.1)
+}
+.ripple-parent {
+  position: relative;
+  overflow: hidden;
+}

@@ -1,0 +1,12 @@
+<div (click)="edit.emit(exam.id)">
+  <div class="cover ion-activatable ripple-parent" [style.backgroundImage]="'url('+ backgroundImage +')'">
+    <ion-ripple-effect></ion-ripple-effect>
+  </div>
+  <div class="d-flex flex-column">
+    <span class="font-15 color-cloud-burst mt-1 ellipses text-left">{{ exam.exam_title }}</span>
+    <div class="d-flex align-items-center">
+      <span *ngIf="exam.level" class="font-12 color-mantis level mr-5">Level {{ exam.level }}</span>
+      <span class="font-12 color-gray-chateau">{{ questionCount }} questions</span>
+    </div>
+  </div>
+</div>

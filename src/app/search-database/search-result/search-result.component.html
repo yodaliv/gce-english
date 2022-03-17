@@ -1,0 +1,9 @@
+<div class="container d-flex justify-content-between mb-15">
+  <h2 class="font-20 font-weight-medium color-cloud-burst my-0">Results</h2>
+  <div class="color-gray-chateau d-flex align-items-center" (click)="openSamplingDialog()">
+    <span class="font-13 mr-10 font-italic">{{ questions.length || 0 }} questions</span>
+    <ion-icon class="font-20" name="filter-outline"></ion-icon>
+  </div>
+</div>
+
+<app-question-preview *ngFor="let question of questions; let i = index" [index]="i" [question]="question"></app-question-preview>
